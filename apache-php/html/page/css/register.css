@@ -1,0 +1,27 @@
+
+body {
+    background-color: #f8f9fa; /* Couleur de fond claire */
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #343a40; /* Couleur sombre pour le texte */
+}
+
+.form-group label {
+    font-weight: bold; /* Mettre le texte en gras */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Couleur principale de Bootstrap */
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Couleur au survol */
+    border-color: #0056b3;
+}
+
+p {
+    color: #6c757d; /* Couleur pour le texte secondaire */
+}

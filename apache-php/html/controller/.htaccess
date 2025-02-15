@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Autoriser l'accès uniquement si le référent est de localhost (vous pouvez aussi spécifier d'autres URL)
+RewriteCond %{HTTP_REFERER} ^http://localhost/ [NC]
+RewriteRule ^.*$ - [L]
+
+# Si le référent n'est pas celui attendu, bloquer l'accès
+RewriteCond %{HTTP_REFERER} !^http://localhost/ [NC]
+RewriteRule ^.*$ - [F,L]

@@ -1,0 +1,334 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+#map {
+  height: 100vh; /* Prend toute la hauteur de la vue */
+  width: 100%; /* Prend toute la largeur de l'écran */
+  position: relative; /* Positionnement relatif pour les éléments enfants */
+  z-index: 1; /* Assure-toi que la carte est au-dessus des autres éléments */
+}
+
+#searchBar {
+  display: flex; /* Utiliser flexbox pour centrer le champ */
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  padding: 10px; /* Espacement autour du champ */
+  pointer-events: none;
+  position: fixed; /* Position fixe en haut */
+  top: 0; /* Aligné en haut */
+  left: 0; /* Aligné à gauche */
+  width: 100%; /* Prendre toute la largeur de la page */
+  z-index: 1000; /* Assurer qu'elle soit au-dessus de la carte */
+  margin: 20px 0; /* Ajoute un espacement de 20px entre le texte et la bordure */
+}
+
+#searchInput {
+  padding: 10px; /* Espacement interne */
+  width: 300px; /* Largeur de la barre de recherche */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 4px; /* Coins arrondis */
+  font-size: 16px; /* Taille de la police */
+  pointer-events: auto;
+}
+#popup {
+  position: fixed; /* Positionnement fixe pour le pop-up */
+  bottom: 20px; /* Distance du bas de l'écran */
+  left: 50%; /* Centrer horizontalement */
+  transform: translateX(-50%); /* Ajuster pour centrer parfaitement */
+  background: white; /* Fond blanc pour le pop-up */
+  border: 1px solid #ccc; /* Bordure pour le pop-up */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Ombre pour le pop-up */
+  z-index: 1000; /* Assurer que le pop-up est au-dessus de la carte */
+  padding: 15px; /* Espace intérieur du pop-up */
+  width: 90%; /* Largeur du pop-up, ajustable */
+  max-width: 400px; /* Largeur maximale pour le pop-up */
+  display: none; /* Masqué par défaut */
+  border-radius: 5px; /* Coins arrondis pour le pop-up */
+}
+#popupInfo {
+  position: fixed; /* Positionnement fixe pour le pop-up */
+  left: 50%; /* Centrer horizontalement */
+  transform: translateX(-50%); /* Ajuster pour centrer parfaitement */
+  background: white; /* Fond blanc pour le pop-up */
+  border: 1px solid #ccc; /* Bordure pour le pop-up */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Ombre pour le pop-up */
+  z-index: 106; /* Assurer que le pop-up est au-dessus de la carte */
+  padding: 0px; /* Espace intérieur du pop-up */
+  width: 90%; /* Largeur du pop-up, ajustable */
+  max-width: 400px; /* Largeur maximale pour le pop-up */
+  border-radius: 5px; /* Coins arrondis pour le pop-up */
+  display: none; /* Masqué par défaut */
+  bottom: 156px; /* Ajustez la distance pour qu'il soit au-dessus du premier pop-up */
+}
+#popupContentInfo {
+  text-align: center;
+  margin: -8px;
+}
+button.disabled {
+  pointer-events: none; /* Désactiver les événements de pointeur */
+  opacity: 0.4; /* Rendre le bouton semi-transparent */
+  background-color: red;
+}
+#popupRes {
+  display: none; /* Commence masqué */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1006;
+  height: 140px;
+}
+#popupContentRes {
+  text-align: center;
+}
+#overlay {
+  display: none; /* Masqué par défaut */
+  position: fixed; /* Positionnement fixe */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  z-index: 1005; /* Juste en dessous du pop-up */
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #666;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+#popupContent {
+  clear: both; /* Pour éviter que le contenu ne soit affecté par l'icône de fermeture */
+  margin: 0 auto; /* Centrer horizontalement */
+  position: relative;
+}
+
+#submitButton {
+  position: absolute; /* Positionnement absolu */
+  top: 34px; /* Espacement du haut */
+  right: 40px; /* Espacement de la droite */
+  background-color: #28a745; /* Couleur de fond verte */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  padding: 5px 10px; /* Espacement interne */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur en forme de main */
+}
+
+#submitButton:hover {
+  background-color: #218838; /* Couleur de fond au survol */
+}
+
+.submitConfirmation {
+  position: absolute;
+  top: 75%; /* Espacement du haut */
+  right: 40%; /* Espacement de la droite */
+  background-color: #28a745; /* Couleur de fond verte */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  padding: 5px 10px; /* Espacement interne */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur en forme de main */
+}
+
+.submitConfirmation:hover {
+  background-color: #218838; /* Couleur de fond au survol */
+}
+
+.submitRes {
+  position: absolute; /* Positionnement absolu */
+  top: 34px; /* Espacement du haut */
+  left: 42px; /* Espacement de la droite */
+  background-color: #28a745; /* Couleur de fond verte */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  padding: 5px 10px; /* Espacement interne */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur en forme de main */
+}
+
+.submitRes:hover {
+  background-color: #218838; /* Couleur de fond au survol */
+}
+
+#errorPopup {
+  display: none; /* Commence masqué */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1010; /* Plus haut que le popup de la carte */
+}
+
+#errorMessage {
+  text-align: center;
+}
+
+.leaflet-routing-container {
+  display: none; /* Masque le conteneur des instructions */
+}
+#popupContent {
+  text-align: center;
+}
+
+#topRightSquare {
+  width: 30px; /* Largeur du carré */
+  height: 30px; /* Hauteur du carré */
+  background-color: white; /* Couleur du carré */
+  position: fixed; /* Positionnement fixe pour qu'il reste en haut à droite même en défilant */
+  top: 12px; /* Aligné en haut */
+  right: 10px; /* Éloigné de 10px du côté droit */
+  z-index: 1001; /* S'assurer qu'il soit au-dessus du reste */
+  border: 2px solid rgba(0, 0, 0, 0.366); /* Bordure noire pour mieux délimiter */
+  margin: 21px 0; /* Espacement en haut et en bas */
+  display: flex; /* Utilisation de Flexbox */
+  align-items: center; /* Centrer verticalement */
+  justify-content: center; /* Centrer horizontalement */
+  touch-action: none;
+}
+
+@media (max-width: 600px) {
+  #topRightSquare {
+    width: 20vw; /* Largeur de 20% de la largeur de la fenêtre */
+    height: 20vw; /* Hauteur égale à la largeur pour garder la forme carrée */
+    max-width: 28px; /* Limite maximale pour éviter que le carré devienne trop grand */
+    max-height: 28px; /* Limite maximale pour éviter que le carré devienne trop grand */
+    right: 10px; /* Garder un espacement de 10px du côté droit */
+    margin: 0; /* Supprimer la marge pour un bon ajustement */
+    top: 29px;
+  }
+
+  #searchBar {
+    width: 100%; /* Adapter la largeur de la barre de recherche */
+    padding: 5px; /* Réduire le padding pour un meilleur ajustement */
+  }
+
+  /* Styles pour la carte et les boutons de zoom */
+  .leaflet-control-zoom {
+    transform: scale(0.8); /* Réduire la taille des boutons de zoom */
+    transition: transform 0.2s; /* Transition pour une réduction en douceur */
+  }
+}
+
+#topRightSquare img {
+  max-width: 80%; /* Limiter la largeur de l'image pour qu'elle ne dépasse pas le carré */
+  max-height: 80%; /* Limiter la hauteur de l'image pour qu'elle ne dépasse pas le carré */
+  display: block; /* Éviter l'espace en bas de l'image */
+  transition: transform 0.2s; /* Transition douce pour l'animation */
+}
+
+#topRightSquare img:active {
+  transform: scale(0.9); /* Réduction de la taille de l'image lors du clic */
+}
+
+.floating-image {
+  position: fixed; /* Position fixe */
+  width: 40px; /* Largeur de l'image flottante */
+  height: 40px; /* Hauteur de l'image flottante */
+  pointer-events: none; /* Ignorer les événements de souris */
+  z-index: 1002;
+}
+
+.bike-container {
+  display: flex; /* Aligner les options en deux colonnes */
+  justify-content: space-around; /* Espace entre les deux colonnes */
+}
+
+.bike-option {
+  flex-direction: column; /* Aligner l'image et l'input en colonne */
+  align-items: center; /* Centre le contenu de chaque colonne */
+  width: 45%; /* Largeur de chaque colonne */
+}
+
+.bike-logo {
+  width: 50px; /* Taille du logo */
+  height: auto;
+  margin-bottom: 10px; /* Espacement entre le logo et le texte */
+}
+
+label {
+  display: flex;
+  flex-direction: column; /* Aligne l'input et le texte */
+  align-items: center; /* Centre le contenu */
+  gap: 5px; /* Espacement entre le bouton radio et le texte */
+  cursor: pointer;
+}
+
+#loading-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1007;
+}
+
+.loading-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px; /* Espace entre les "lignes de texte" */
+}
+
+.line {
+  width: 300px;
+  height: 15px;
+  background: #e0e0e0;
+  overflow: hidden;
+  position: relative;
+}
+
+.line::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #cccccc 0%, #e0e0e0 50%, #cccccc 100%);
+  position: absolute;
+  top: 0;
+  left: -100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
