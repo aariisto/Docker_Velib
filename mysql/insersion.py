@@ -11,7 +11,7 @@ conn = mysql.connector.connect(
 cursor = conn.cursor(dictionary=True)
 
 # URL de l'API
-url_api = "http://localhost:5000/stations"
+url_api = "http://flask-app:5000/stations"
 
 # Requête à l'API pour récupérer les données JSON
 response = requests.get(url_api)

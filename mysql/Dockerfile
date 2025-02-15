@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Exécuter le script Python
-CMD ["python", "insertion.py"]
+CMD ["python", "insersion.py"]
