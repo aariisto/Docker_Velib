@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  apache-php:
+    build: ./apache-php
+    ports:
+      - "80:80"
+    volumes:
+      - ./apache-php/html/:/var/www/html    # Monte le dossier html de ton PC dans /var/www/html
+      - ./apache-php/private/:/var/www/private # Monte private dans /var/www/private
+      - ./apache-php/site.conf:/etc/apache2/sites-available/000-default.conf  # Monte la conf Apache
+    depends_on:
+      - mysql
+    restart: always
+
+  flask-app:
+    build: ./flask-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flask-app:/var/www/private
+    restart: always
+
+  python-script:
+    build:
+      context: ./mysql  # Le dossier contenant ton Dockerfile et ton script
+    depends_on:
+      - mysql
+    restart: always
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_server
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: yannel
+      MYSQL_DATABASE: user
+      MYSQL_USER: test
+      MYSQL_PASSWORD: yannel
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/database.sql:/docker-entrypoint-initdb.d/database.sql
+volumes:
+  mysql_data:
