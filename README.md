@@ -11,50 +11,53 @@ Ce projet Docker fournit un environnement de développement et de déploiement e
 ## 🔧 Services Docker
 
 - 🌐 &nbsp;**apache-php**
-
-  - Serveur web Apache avec PHP 8.2
-  - Héberge les fichiers frontend et les APIs backend PHP
-  - Exposé sur le port 80
+  ![Apache](https://img.shields.io/badge/-Apache-333333?style=flat&logo=apache)
+  ![PHP 8.2](https://img.shields.io/badge/-PHP%208.2-333333?style=flat&logo=php)
+  ![Port 80](https://img.shields.io/badge/-Port%2080-333333?style=flat&logo=serverfault)
+  ![Web Server](https://img.shields.io/badge/-Web%20Server-333333?style=flat&logo=internetexplorer)
 
 - 🐍 &nbsp;**flask-app**
-
-  - API Python Flask
-  - Sert de proxy pour récupérer et formater les données des stations Vélib
-  - Exposé sur le port 5000
+  ![Flask](https://img.shields.io/badge/-Flask-333333?style=flat&logo=flask)
+  ![Python](https://img.shields.io/badge/-Python-333333?style=flat&logo=python)
+  ![API Proxy](https://img.shields.io/badge/-API%20Proxy-333333?style=flat&logo=api)
+  ![Port 5000](https://img.shields.io/badge/-Port%205000-333333?style=flat&logo=serverfault)
 
 - 🗄️ &nbsp;**mysql**
-
-  - Base de données MySQL 8.0
-  - Stocke les données utilisateur, les recherches et les réservations
-  - Exposé sur le port 3306
+  ![MySQL 8.0](https://img.shields.io/badge/-MySQL%208.0-333333?style=flat&logo=mysql)
+  ![Database](https://img.shields.io/badge/-Database-333333?style=flat&logo=database)
+  ![Data Storage](https://img.shields.io/badge/-Data%20Storage-333333?style=flat&logo=mysql)
+  ![Port 3306](https://img.shields.io/badge/-Port%203306-333333?style=flat&logo=serverfault)
 
 - 📊 &nbsp;**python-script**
-  - Script Python pour l'initialisation et la mise à jour des données
-  - S'exécute après le démarrage de la base de données
+  ![Python](https://img.shields.io/badge/-Python-333333?style=flat&logo=python)
+  ![Data Import](https://img.shields.io/badge/-Data%20Import-333333?style=flat&logo=database)
+  ![Initializer](https://img.shields.io/badge/-Initializer-333333?style=flat&logo=docker)
+  ![Scheduler](https://img.shields.io/badge/-Scheduler-333333?style=flat&logo=clockify)
 
 ## 🔨 Technologies Docker utilisées
 
 - 🐋 &nbsp;**Docker & Docker Compose**
-
-  - Docker Compose version 3.8
-  - Multi-conteneurs orchestrés
+  ![Docker](https://img.shields.io/badge/-Docker-333333?style=flat&logo=docker)
+  ![Docker Compose](https://img.shields.io/badge/-Docker%20Compose-333333?style=flat&logo=docker)
+  ![YAML](https://img.shields.io/badge/-YAML-333333?style=flat&logo=yaml)
 
 - 🌐 &nbsp;**Serveur Web**
-
-  - Apache 2 avec PHP 8.2
-  - Extension MySQLi pour la connexion à la base de données
-  - Module Apache rewrite activé
+  ![Apache](https://img.shields.io/badge/-Apache-333333?style=flat&logo=apache)
+  ![PHP](https://img.shields.io/badge/-PHP%208.2-333333?style=flat&logo=php)
+  ![MySQLi](https://img.shields.io/badge/-MySQLi-333333?style=flat&logo=mysql)
+  ![mod_rewrite](https://img.shields.io/badge/-mod__rewrite-333333?style=flat&logo=apache)
 
 - 🐍 &nbsp;**Python Services**
-
-  - Python 3.9 (Flask API) et Python 3.8 (Script d'initialisation)
-  - Flask, Flask-CORS et Requests pour l'API
-  - mysql-connector-python pour le script d'initialisation
+  ![Python](https://img.shields.io/badge/-Python-333333?style=flat&logo=python)
+  ![Flask](https://img.shields.io/badge/-Flask-333333?style=flat&logo=flask)
+  ![Flask-CORS](https://img.shields.io/badge/-Flask--CORS-333333?style=flat&logo=flask)
+  ![Requests](https://img.shields.io/badge/-Requests-333333?style=flat&logo=python)
+  ![MySQL Connector](https://img.shields.io/badge/-MySQL%20Connector-333333?style=flat&logo=mysql)
 
 - 🗄️ &nbsp;**Base de données**
-  - MySQL 8.0
-  - Volumes persistants
-  - Script d'initialisation SQL automatique
+  ![MySQL](https://img.shields.io/badge/-MySQL%208.0-333333?style=flat&logo=mysql)
+  ![Docker Volumes](https://img.shields.io/badge/-Docker%20Volumes-333333?style=flat&logo=docker)
+  ![SQL](https://img.shields.io/badge/-SQL-333333?style=flat&logo=database)
 
 ## 📂 Structure du projet Docker
 
@@ -130,6 +133,10 @@ Les volumes montés pour les fichiers sources permettent de modifier le code sur
 Le conteneur `python-script` exécute automatiquement le script qui importe les données des stations Vélib depuis l'API Flask vers la base de données MySQL.
 
 ## 🛠️ Commandes Docker utiles
+
+- 🚀 &nbsp;**Déploiement**
+  ![Docker Compose](https://img.shields.io/badge/-Docker%20Compose-333333?style=flat&logo=docker)
+  ![Terminal](https://img.shields.io/badge/-Terminal-333333?style=flat&logo=gnubash)
 
 ```bash
 # Démarrer les services
